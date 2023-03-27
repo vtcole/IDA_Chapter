@@ -1,0 +1,18 @@
+------Begin Mplus Model Run: 15Mar2023 21:31:43------
+Run options:
+	Recursive (run models in subdirectories): FALSE
+	Show output on console: FALSE
+	Replace existing outfile: always
+------
+Currently running model: DIF_1.inp
+Currently running model: DIF_2.inp
+Currently running model: DIF_3.inp
+Currently running model: DIF_4.inp
+Currently running model: DIF_5.inp
+Currently running model: DIF_6.inp
+Currently running model: DIF_7.inp
+Currently running model: DIF_8.inp
+Currently running model: mean_impact.inp
+Currently running model: variance_impact.inp
+
+------End Mplus Model Run: 15Mar2023 21:41:08------

@@ -1,0 +1,331 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/26/2023   1:33 PM
+
+INPUT INSTRUCTIONS
+
+    Data:
+      File is PerspectiveTakingData.csv;
+    Variable:
+      Names are
+        ID study age
+          male white task_1 task_2 task_3
+          task_4 task_5 task_6 task_7 task_8;
+      Missing ARE ALL (-55555);
+      Usevariables are task_1 task_2 task_3 task_4
+          task_5 task_6 task_7 task_8
+          ;
+      Constraint = age male white study_1 study_2;
+      Categorical = task_1 task_2 task_3 task_4
+          task_5 task_6 task_7;
+    define:
+      Study_1 = 0;
+      If (study == 1) THEN Study_1 = 1;
+      Study_2 = 0;
+      If (study == 2) THEN Study_2 = 1;
+      Study_3 = 0;
+      If (study == 3) THEN Study_3 = 1;
+    analysis:
+    estimator = MLR;
+    algorithm = integration;
+    model:
+    f by task_1* (l1)
+         task_2* (l2)
+         task_3* (l3)
+         task_4* (l4)
+         task_5* (l5)
+         task_6* (l6)
+         task_7* (l7)
+         task_8* (l8);
+         f(v);
+    model constraint:
+    new (v_1 v_2 v_3 v_4 v_5);
+    v = exp(v_1*age + v_2*study_1 + v_3*study_2 +
+          v_4*male + v_5*white);
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1000
+
+Number of dependent variables                                    8
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   TASK_8
+
+  Binary and ordered categorical (ordinal)
+   TASK_1      TASK_2      TASK_3      TASK_4      TASK_5      TASK_6
+   TASK_7
+
+Continuous latent variables
+   F
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            1
+  Adaptive quadrature                                           ON
+Link                                                         LOGIT
+Cholesky                                                       OFF
+
+Input data file(s)
+  PerspectiveTakingData.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             3
+     Number of y missing data patterns           1
+     Number of u missing data patterns           3
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              TASK_1        TASK_2        TASK_3        TASK_4        TASK_5
+              ________      ________      ________      ________      ________
+ TASK_1         0.500
+ TASK_2         0.500         0.500
+ TASK_3         0.500         0.500         1.000
+ TASK_4         0.000         0.000         0.500         0.500
+ TASK_5         0.500         0.500         1.000         0.500         1.000
+ TASK_6         0.250         0.250         0.250         0.000         0.250
+ TASK_7         0.500         0.500         1.000         0.500         1.000
+ TASK_8         0.500         0.500         1.000         0.500         1.000
+
+
+           Covariance Coverage
+              TASK_6        TASK_7        TASK_8
+              ________      ________      ________
+ TASK_6         0.250
+ TASK_7         0.250         1.000
+ TASK_8         0.250         1.000         1.000
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              TASK_1        TASK_2        TASK_3        TASK_4        TASK_5
+              ________      ________      ________      ________      ________
+ TASK_1         0.500
+ TASK_2         0.500         0.500
+ TASK_3         0.500         0.500         1.000
+ TASK_4         0.000         0.000         0.500         0.500
+ TASK_5         0.500         0.500         1.000         0.500         1.000
+ TASK_6         0.250         0.250         0.250         0.000         0.250
+ TASK_7         0.500         0.500         1.000         0.500         1.000
+
+
+           Covariance Coverage
+              TASK_6        TASK_7
+              ________      ________
+ TASK_6         0.250
+ TASK_7         0.250         1.000
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              TASK_8
+              ________
+ TASK_8         1.000
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    TASK_1
+      Category 1    0.146           73.000
+      Category 2    0.854          427.000
+    TASK_2
+      Category 1    0.324          162.000
+      Category 2    0.676          338.000
+    TASK_3
+      Category 1    0.114          114.000
+      Category 2    0.886          886.000
+    TASK_4
+      Category 1    0.142           71.000
+      Category 2    0.858          429.000
+    TASK_5
+      Category 1    0.245          245.000
+      Category 2    0.755          755.000
+    TASK_6
+      Category 1    0.012            3.000
+      Category 2    0.104           26.000
+      Category 3    0.120           30.000
+      Category 4    0.764          191.000
+    TASK_7
+      Category 1    0.223          223.000
+      Category 2    0.281          281.000
+      Category 3    0.496          496.000
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     TASK_8                5.302       0.295       0.000    0.30%       4.000      5.000      5.000
+            1000.000       3.593      -0.215      11.000    0.40%       6.000      7.000
+     AGE                   5.741       0.385       2.000    5.40%       4.000      5.000      5.500
+            1000.000       5.390      -0.860      10.000   11.80%       6.000      8.000
+     MALE                  0.565      -0.262       0.000   43.50%       0.000      0.000      1.000
+            1000.000       0.246      -1.931       1.000   56.50%       1.000      1.000
+     WHITE                 0.503      -0.012       0.000   49.70%       0.000      0.000      1.000
+            1000.000       0.250      -2.000       1.000   50.30%       1.000      1.000
+     STUDY_1               0.250       1.155       0.000   75.00%       0.000      0.000      0.000
+            1000.000       0.188      -0.667       1.000   25.00%       0.000      1.000
+     STUDY_2               0.500       0.000       0.000   50.00%       0.000      0.000      0.500
+            1000.000       0.250      -2.000       1.000   50.00%       1.000      1.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       25
+
+Loglikelihood
+
+          H0 Value                       -4097.636
+          H0 Scaling Correction Factor      0.9907
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    8245.271
+          Bayesian (BIC)                  8367.965
+          Sample-Size Adjusted BIC        8288.564
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F        BY
+    TASK_1             1.531      0.270      5.679      0.000
+    TASK_2             1.465      0.202      7.272      0.000
+    TASK_3             1.484      0.218      6.809      0.000
+    TASK_4             1.073      0.167      6.438      0.000
+    TASK_5             1.564      0.204      7.646      0.000
+    TASK_6             0.705      0.152      4.628      0.000
+    TASK_7             0.633      0.070      9.022      0.000
+    TASK_8             0.804      0.069     11.657      0.000
+
+ Intercepts
+    TASK_8             4.679      0.072     65.078      0.000
+
+ Thresholds
+    TASK_1$1          -3.568      0.399     -8.933      0.000
+    TASK_2$1          -1.820      0.225     -8.078      0.000
+    TASK_3$1          -3.235      0.291    -11.121      0.000
+    TASK_4$1          -1.225      0.198     -6.201      0.000
+    TASK_5$1          -1.619      0.203     -7.975      0.000
+    TASK_6$1          -5.015      0.548     -9.145      0.000
+    TASK_6$2          -2.503      0.257     -9.724      0.000
+    TASK_6$3          -1.523      0.208     -7.338      0.000
+    TASK_7$1          -1.213      0.101    -12.032      0.000
+    TASK_7$2           0.469      0.092      5.098      0.000
+
+ Variances
+    F                999.000      0.000    999.000    999.000
+
+ Residual Variances
+    TASK_8             0.346      0.059      5.880      0.000
+
+New/Additional Parameters
+    V_1                0.185      0.031      5.991      0.000
+    V_2                0.317      0.171      1.850      0.064
+    V_3                0.763      0.217      3.522      0.000
+    V_4               -0.121      0.092     -1.313      0.189
+    V_5                0.023      0.093      0.252      0.801
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.152E-03
+       (ratio of smallest to largest eigenvalue)
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\colev\dropbox\ida_chapter\ida_chapter\mplus\variance_impact.dgm
+
+     Beginning Time:  13:33:14
+        Ending Time:  13:33:38
+       Elapsed Time:  00:00:24
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

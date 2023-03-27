@@ -1,0 +1,40 @@
+  Data:
+    File is PerspectiveTakingData.csv;
+  Variable:
+    Names are
+      ID study age
+        male white task_1 task_2 task_3 
+        task_4 task_5 task_6 task_7 task_8;
+    Missing ARE ALL (-55555);
+    Usevariables are task_1 task_2 task_3 task_4
+        task_5 task_6 task_7 task_8
+        age male white study_1 study_2
+        ;
+    Constraint = age male white study_1 study_2;
+    Categorical = task_1 task_2 task_3 task_4
+        task_5 task_6 task_7;
+  define:
+    Study_1 = 0;
+    If (study == 1) THEN Study_1 = 1;
+    Study_2 = 0;
+    If (study == 2) THEN Study_2 = 1;
+    Study_3 = 0;
+    If (study == 3) THEN Study_3 = 1;
+  analysis:
+  estimator = MLR;
+  algorithm = integration;
+  model:
+  f by task_1* (l1)
+       task_2* (l2)
+       task_3* (l3)
+       task_4* (l4)
+       task_5* (l5)
+       task_6* (l6)
+       task_7* (l7)
+       task_8* (l8);
+       f@1;
+  task_8 ON age male white study_1 study_2;
+  model constraint:
+  new (l_0 l_1 l_2 l_3 l_4 l_5);
+  l8 = l_0 + l_1*age + l_2*study_1 + l_3*study_2 +
+        l_4*male + l_5*white;

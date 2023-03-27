@@ -1,0 +1,74 @@
+VERSION 1.1.0
+INPUT
+DATA:
+    File is PerspectiveTakingData.csv;
+VARIABLE:
+    Names are
+      ID study age
+        male white task_1 task_2 task_3
+        task_4 task_5 task_6 task_7 task_8;
+    Missing ARE ALL (-55555);
+    Usevariables are task_1 task_2 task_3 task_4
+        task_5 task_6 task_7 task_8
+        ;
+    Constraint = age male white study_1 study_2;
+    Categorical = task_1 task_2 task_3 task_4
+        task_5 task_6 task_7;
+DEFINE:
+    Study_1 = 0;
+    If (study == 1) THEN Study_1 = 1;
+    Study_2 = 0;
+    If (study == 2) THEN Study_2 = 1;
+    Study_3 = 0;
+    If (study == 3) THEN Study_3 = 1;
+ANALYSIS:
+  estimator = MLR;
+  algorithm = integration;
+MODEL:
+  f by task_1* (l1)
+       task_2* (l2)
+       task_3* (l3)
+       task_4* (l4)
+       task_5* (l5)
+       task_6* (l6)
+       task_7* (l7)
+       task_8* (l8);
+       f(v);
+INPUT_END
+2
+0
+0
+0
+MLR
+1
+GENERAL
+0
+8
+1
+0
+task_1 task_2 task_3 task_4 task_5 task_6 task_7 task_8 f
+1
+-1 -1 -1 -1 -1 -1 -1 -1 0
+0
+1
+f
+task_1 task_2 task_3 task_4 task_5 task_6 task_7 task_8
+1 1 f task_1    1.531    0.270
+91 1 f task_1 l1
+1 1 f task_2    1.465    0.202
+91 1 f task_2 l2
+1 1 f task_3    1.484    0.218
+91 1 f task_3 l3
+1 1 f task_4    1.073    0.167
+91 1 f task_4 l4
+1 1 f task_5    1.564    0.204
+91 1 f task_5 l5
+1 1 f task_6    0.705    0.152
+91 1 f task_6 l6
+1 1 f task_7    0.633    0.070
+91 1 f task_7 l7
+1 1 f task_8    0.804    0.069
+91 1 f task_8 l8
+4 1 task_8    0.346    0.059
+5 1 f  999.000    0.000
+95 1 f v

@@ -1,0 +1,372 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/15/2023   9:33 PM
+
+INPUT INSTRUCTIONS
+
+    Data:
+      File is PerspectiveTakingData.csv;
+    Variable:
+      Names are
+        ID study age
+          male white task_1 task_2 task_3
+          task_4 task_5 task_6 task_7 task_8;
+      Missing ARE ALL (-55555);
+      Usevariables are task_1 task_2 task_3 task_4
+          task_5 task_6 task_7 task_8
+          age male white
+          ;
+      Constraint = age male white;
+      Categorical = task_1 task_2 task_3 task_4
+          task_5 task_6 task_7;
+    define:
+      Study_1 = 0;
+      If (study == 1) THEN Study_1 = 1;
+      Study_2 = 0;
+      If (study == 2) THEN Study_2 = 1;
+      Study_3 = 0;
+      If (study == 3) THEN Study_3 = 1;
+    analysis:
+    estimator = MLR;
+    algorithm = integration;
+    model:
+    f by task_1* (l1)
+         task_2* (l2)
+         task_3* (l3)
+         task_4* (l4)
+         task_5* (l5)
+         task_6* (l6)
+         task_7* (l7)
+         task_8* (l8);
+         f@1;
+    task_4 ON age male white ;
+    model constraint:
+    new (l_0 l_1 l_4 l_5);
+    l4 = l_0 + l_1*age +
+          l_4*male + l_5*white;
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        1000
+
+Number of dependent variables                                    8
+Number of independent variables                                  3
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   TASK_8
+
+  Binary and ordered categorical (ordinal)
+   TASK_1      TASK_2      TASK_3      TASK_4      TASK_5      TASK_6
+   TASK_7
+
+Observed independent variables
+   AGE         MALE        WHITE
+
+Continuous latent variables
+   F
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Optimization Specifications for the Quasi-Newton Algorithm for
+Continuous Outcomes
+  Maximum number of iterations                                 100
+  Convergence criterion                                  0.100D-05
+Optimization Specifications for the EM Algorithm
+  Maximum number of iterations                                 500
+  Convergence criteria
+    Loglikelihood change                                 0.100D-02
+    Relative loglikelihood change                        0.100D-05
+    Derivative                                           0.100D-02
+Optimization Specifications for the M step of the EM Algorithm for
+Categorical Latent variables
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+Optimization Specifications for the M step of the EM Algorithm for
+Censored, Binary or Ordered Categorical (Ordinal), Unordered
+Categorical (Nominal) and Count Outcomes
+  Number of M step iterations                                    1
+  M step convergence criterion                           0.100D-02
+  Basis for M step termination                           ITERATION
+  Maximum value for logit thresholds                            15
+  Minimum value for logit thresholds                           -15
+  Minimum expected cell size for chi-square              0.100D-01
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Optimization algorithm                                         EMA
+Integration Specifications
+  Type                                                    STANDARD
+  Number of integration points                                  15
+  Dimensions of numerical integration                            1
+  Adaptive quadrature                                           ON
+Link                                                         LOGIT
+Cholesky                                                       OFF
+
+Input data file(s)
+  PerspectiveTakingData.csv
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns             3
+     Number of y missing data patterns           1
+     Number of u missing data patterns           3
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              TASK_1        TASK_2        TASK_3        TASK_4        TASK_5
+              ________      ________      ________      ________      ________
+ TASK_1         0.500
+ TASK_2         0.500         0.500
+ TASK_3         0.500         0.500         1.000
+ TASK_4         0.000         0.000         0.500         0.500
+ TASK_5         0.500         0.500         1.000         0.500         1.000
+ TASK_6         0.250         0.250         0.250         0.000         0.250
+ TASK_7         0.500         0.500         1.000         0.500         1.000
+ TASK_8         0.500         0.500         1.000         0.500         1.000
+ AGE            0.500         0.500         1.000         0.500         1.000
+ MALE           0.500         0.500         1.000         0.500         1.000
+ WHITE          0.500         0.500         1.000         0.500         1.000
+
+
+           Covariance Coverage
+              TASK_6        TASK_7        TASK_8        AGE           MALE
+              ________      ________      ________      ________      ________
+ TASK_6         0.250
+ TASK_7         0.250         1.000
+ TASK_8         0.250         1.000         1.000
+ AGE            0.250         1.000         1.000         1.000
+ MALE           0.250         1.000         1.000         1.000         1.000
+ WHITE          0.250         1.000         1.000         1.000         1.000
+
+
+           Covariance Coverage
+              WHITE
+              ________
+ WHITE          1.000
+
+
+     PROPORTION OF DATA PRESENT FOR U
+
+
+           Covariance Coverage
+              TASK_1        TASK_2        TASK_3        TASK_4        TASK_5
+              ________      ________      ________      ________      ________
+ TASK_1         0.500
+ TASK_2         0.500         0.500
+ TASK_3         0.500         0.500         1.000
+ TASK_4         0.000         0.000         0.500         0.500
+ TASK_5         0.500         0.500         1.000         0.500         1.000
+ TASK_6         0.250         0.250         0.250         0.000         0.250
+ TASK_7         0.500         0.500         1.000         0.500         1.000
+
+
+           Covariance Coverage
+              TASK_6        TASK_7
+              ________      ________
+ TASK_6         0.250
+ TASK_7         0.250         1.000
+
+
+     PROPORTION OF DATA PRESENT FOR Y
+
+
+           Covariance Coverage
+              TASK_8        AGE           MALE          WHITE
+              ________      ________      ________      ________
+ TASK_8         1.000
+ AGE            1.000         1.000
+ MALE           1.000         1.000         1.000
+ WHITE          1.000         1.000         1.000         1.000
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    TASK_1
+      Category 1    0.146           73.000
+      Category 2    0.854          427.000
+    TASK_2
+      Category 1    0.324          162.000
+      Category 2    0.676          338.000
+    TASK_3
+      Category 1    0.114          114.000
+      Category 2    0.886          886.000
+    TASK_4
+      Category 1    0.142           71.000
+      Category 2    0.858          429.000
+    TASK_5
+      Category 1    0.245          245.000
+      Category 2    0.755          755.000
+    TASK_6
+      Category 1    0.012            3.000
+      Category 2    0.104           26.000
+      Category 3    0.120           30.000
+      Category 4    0.764          191.000
+    TASK_7
+      Category 1    0.223          223.000
+      Category 2    0.281          281.000
+      Category 3    0.496          496.000
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     TASK_8                5.302       0.295       0.000    0.30%       4.000      5.000      5.000
+            1000.000       3.593      -0.215      11.000    0.40%       6.000      7.000
+     AGE                   5.741       0.385       2.000    5.40%       4.000      5.000      5.500
+            1000.000       5.390      -0.860      10.000   11.80%       6.000      8.000
+     MALE                  0.565      -0.262       0.000   43.50%       0.000      0.000      1.000
+            1000.000       0.246      -1.931       1.000   56.50%       1.000      1.000
+     WHITE                 0.503      -0.012       0.000   49.70%       0.000      0.000      1.000
+            1000.000       0.250      -2.000       1.000   50.30%       1.000      1.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       26
+
+Loglikelihood
+
+          H0 Value                       -4146.657
+          H0 Scaling Correction Factor      0.9606
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                    8345.315
+          Bayesian (BIC)                  8472.916
+          Sample-Size Adjusted BIC        8390.339
+            (n* = (n + 2) / 24)
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ F        BY
+    TASK_1             3.125      0.443      7.052      0.000
+    TASK_2             2.913      0.339      8.582      0.000
+    TASK_3             3.164      0.346      9.135      0.000
+    TASK_4           999.000      0.000    999.000    999.000
+    TASK_5             3.398      0.331     10.267      0.000
+    TASK_6             1.417      0.267      5.304      0.000
+    TASK_7             1.459      0.113     12.901      0.000
+    TASK_8             1.772      0.048     36.767      0.000
+
+ TASK_4     ON
+    AGE               -0.191      0.130     -1.470      0.141
+    MALE               0.611      0.520      1.175      0.240
+    WHITE             -0.660      0.422     -1.564      0.118
+
+ Intercepts
+    TASK_8             5.302      0.060     88.459      0.000
+
+ Thresholds
+    TASK_1$1          -4.553      0.514     -8.861      0.000
+    TASK_2$1          -2.675      0.295     -9.081      0.000
+    TASK_3$1          -4.302      0.379    -11.342      0.000
+    TASK_4$1          -3.743      1.133     -3.304      0.001
+    TASK_5$1          -2.746      0.261    -10.520      0.000
+    TASK_6$1          -5.473      0.558     -9.810      0.000
+    TASK_6$2          -2.949      0.310     -9.514      0.000
+    TASK_6$3          -1.963      0.264     -7.425      0.000
+    TASK_7$1          -1.725      0.109    -15.820      0.000
+    TASK_7$2          -0.003      0.088     -0.029      0.977
+
+ Variances
+    F                  1.000      0.000    999.000    999.000
+
+ Residual Variances
+    TASK_8             0.453      0.074      6.156      0.000
+
+New/Additional Parameters
+    L_0                3.979      1.262      3.154      0.002
+    L_1               -0.189      0.133     -1.424      0.154
+    L_4                1.482      0.810      1.830      0.067
+    L_5               -0.723      0.632     -1.144      0.253
+
+
+LOGISTIC REGRESSION ODDS RATIO RESULTS
+
+                                         (Est. - 1) Two-Tailed
+                    Estimate       S.E.     / S.E.    P-Value
+
+ TASK_4     ON
+    AGE                0.826      0.107     -1.620      0.105
+    MALE               1.843      0.959      0.879      0.379
+    WHITE              0.517      0.218     -2.215      0.027
+
+
+BRANT WALD TEST FOR PROPORTIONAL ODDS
+
+                                   Degrees of
+                      Chi-Square     Freedom   P-Value
+
+  TASK_6
+    Overall test           3.322         6      0.768
+    AGE                    2.043         2      0.360
+    MALE                   0.472         2      0.790
+    WHITE                  0.942         2      0.624
+
+  TASK_7
+    Overall test           2.493         3      0.476
+    AGE                    0.964         1      0.326
+    MALE                   1.588         1      0.208
+    WHITE                  0.006         1      0.939
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.552E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+     Beginning Time:  21:33:22
+        Ending Time:  21:33:39
+       Elapsed Time:  00:00:17
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

@@ -1,0 +1,105 @@
+VERSION 1.1.0
+INPUT
+DATA:
+    File is PerspectiveTakingData.csv;
+VARIABLE:
+    Names are
+      ID study age
+        male white task_1 task_2 task_3
+        task_4 task_5 task_6 task_7 task_8;
+    Missing ARE ALL (-55555);
+    Usevariables are task_1 task_2 task_3 task_4
+        task_5 task_6 task_7 task_8
+        age white male study_1 study_2
+        ;
+    Constraint = age study_1 study_2;
+    Categorical = task_1 task_2 task_3 task_4
+        task_5 task_6 task_7;
+DEFINE:
+    Study_1 = 0;
+    If (study == 1) THEN Study_1 = 1;
+    Study_2 = 0;
+    If (study == 2) THEN Study_2 = 1;
+    Study_3 = 0;
+    If (study == 3) THEN Study_3 = 1;
+ANALYSIS:
+  estimator = MLR;
+  algorithm = integration;
+MODEL:
+  f by task_1* (l1)
+       task_2* (l2)
+       task_3* (l3)
+       task_4* (l4)
+       task_5* (l5)
+       task_6* (l6)
+       task_7* (l7)
+       task_8* (l8);
+       f(v);
+  task_1 ON age;
+  task_3 ON age;
+  task_5 ON study_2;
+  task_6 ON age white;
+  task_7 ON male study_2;
+  task_8 ON age study_1 study_2;
+  f ON age study_1 study_2;
+INPUT_END
+2
+0
+0
+0
+MLR
+1
+GENERAL
+0
+8
+1
+5
+task_1 task_2 task_3 task_4 task_5 task_6 task_7 task_8 f age white male study_1 study_2
+2
+-1 -1 -1 -1 -1 -1 -1 -1 1 0 0 0 0 0
+0
+1
+f
+task_1 task_2 task_3 task_4 task_5 task_6 task_7 task_8
+1 1 f task_1    2.317    0.421
+91 1 f task_1 l1
+1 1 f task_2    2.555    0.421
+91 1 f task_2 l2
+1 1 f task_3    2.539    0.399
+91 1 f task_3 l3
+1 1 f task_4    3.068    0.561
+91 1 f task_4 l4
+1 1 f task_5    4.310    0.714
+91 1 f task_5 l5
+1 1 f task_6    0.634    0.268
+91 1 f task_6 l6
+1 1 f task_7    1.889    0.271
+91 1 f task_7 l7
+1 1 f task_8  999.000    0.000
+91 1 f task_8 l8
+1 1 age f    0.169    0.038
+1 1 study_1 f    0.134    0.094
+1 1 study_2 f    0.195    0.312
+1 1 age task_1    0.891    0.162
+1 1 age task_3    0.756    0.140
+1 1 study_2 task_5   -0.521    1.032
+1 1 age task_6    0.851    0.139
+1 1 white task_6    0.986    0.356
+1 1 male task_7   -0.268    0.141
+1 1 study_2 task_7   -0.095    0.502
+1 1 age task_8    0.094    0.047
+1 1 study_1 task_8    0.134    0.094
+1 1 study_2 task_8    0.359    0.276
+4 1 task_8    0.340    0.045
+4 1 f  999.000    0.000
+94 1 f v
+2 1 age white  999.000  999.000
+2 1 age male  999.000  999.000
+2 1 age study_1  999.000  999.000
+2 1 age study_2  999.000  999.000
+2 1 white male  999.000  999.000
+2 1 white study_1  999.000  999.000
+2 1 white study_2  999.000  999.000
+2 1 male study_1  999.000  999.000
+2 1 male study_2  999.000  999.000
+2 1 study_1 study_2  999.000  999.000
